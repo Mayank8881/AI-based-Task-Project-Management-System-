@@ -1,0 +1,41 @@
+<div class="border p-6 rounded shadow mb-8 bg-white">
+
+    <h2 class="text-xl font-bold mb-4">Create Project</h2>
+
+    <div class="space-y-3">
+
+        <input
+            type="text"
+            placeholder="Project Name"
+            class="border p-2 w-full rounded"
+            [value]="name()"
+            (input)="name.set($any($event.target).value)"
+        />
+
+        <textarea
+            placeholder="Project Description"
+            class="border p-2 w-full rounded"
+            rows="3"
+            [value]="description()"
+            (input)="description.set($any($event.target).value)"
+        ></textarea>
+
+        <input
+            type="text"
+            placeholder="Created By"
+            class="border p-2 w-full rounded"
+            [value]="createdBy()"
+            (input)="createdBy.set($any($event.target).value)"
+        />
+
+        <button
+            (click)="createProject()"
+            class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
+
+            Create Project
+
+        </button>
+
+    </div>
+
+</div>

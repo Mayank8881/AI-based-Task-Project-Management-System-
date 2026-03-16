@@ -1,0 +1,189 @@
+<div class="p-8">
+
+    <div class="flex justify-between">
+
+        <!-- Title  -->
+        <h1 class="text-2xl font-bold mb-6">Tasks</h1>
+
+        <div class="flex gap-3">
+            <div class="mb-6 flex gap-3">
+
+                <!-- Project Filter -->
+                <select class="border p-2 rounded" (change)="onProjectChange($event)">
+
+                    <option value="all">All Projects</option>
+
+                    @for (p of projects(); track p.id) {
+                    <option [value]="p.id">
+                        {{p.name}}
+                    </option>
+                    }
+
+                </select>
+
+
+                <!-- Priority Filter -->
+
+                <select class="border p-2 rounded" (change)="onPriorityChange($event)">
+                    <option value="">All Priority</option>
+                    <option value="low">Low</option>
+                    <option value="medium">Medium</option>
+                    <option value="high">High</option>
+                </select>
+
+                <!-- Status Filter -->
+
+                <select class="border p-2 rounded" (change)="onStatusChange($event)">
+                    <option value="">All Status</option>
+                    <option value="todo">Todo</option>
+                    <option value="in_progress">In Progress</option>
+                    <option value="done">Done</option>
+                </select>
+
+                <!-- Assignee Filter -->
+
+                <input type="text" placeholder="Assignee" class="border p-2 rounded" (input)="onAssigneeChange($event)">
+            </div>
+
+            <!-- CREATE TASK DROPDOWN -->
+
+            <!-- <div class=" rounded  gap-4 mb-6">
+
+            <button class="w-full text-left p-3 font-semibold bg-gray-100 hover:bg-gray-200" (click)="toggleTaskForm()">
+
+                {{ showTaskForm() ? 'Hide Create Task ▲' : 'Create Task ▼' }}
+
+            </button>
+
+            @if (showTaskForm()) {
+
+            <div class="p-4 border-t">
+                <app-task-form></app-task-form>
+            </div>
+
+            }
+
+        </div> -->
+            <div>
+                <button class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 cursor-pointer"
+                    (click)="toggleTaskForm()">
+
+                    + Create Task
+
+                </button>
+            </div>
+        </div>
+
+    </div>
+
+
+    <!-- Task List -->
+
+    @for (task of tasks(); track task.id) {
+
+    <div class="border p-4 mb-4 rounded shadow bg-white">
+
+        <h2 class="font-bold text-lg">
+            {{task.title}}
+        </h2>
+
+        <p class="text-gray-600">
+            {{task.description}}
+        </p>
+
+        <div class="flex gap-4 mt-2">
+
+            <!-- status  -->
+            <select class="px-2 py-1 rounded text-white" [value]="task.status" (change)="updateStatus(task.id,$event)"
+                [style.backgroundColor]="
+                task.status === 'todo' ? '#f59e0b' :
+                task.status === 'in_progress' ? '#3b82f6' :
+                task.status === 'done' ? '#22c55e' : '#9ca3af'
+            ">
+                <option value="todo">Todo</option>
+                <option value="in_progress">In Progress</option>
+                <option value="done">Done</option>
+            </select>
+
+
+            <!-- <span class="bg-green-200 px-2 py-1 rounded">
+                Priority: {{task.priority}}
+            </span> -->
+
+            <!-- prority  -->
+            @if (task.priority === 'low') {
+            <span class="bg-green-200 text-green-900 px-2 py-1 rounded">
+                Priority: {{task.priority}}
+            </span>
+            }
+
+            @if (task.priority === 'medium') {
+            <span class="bg-yellow-200 text-yellow-900 px-2 py-1 rounded">
+                Priority: {{task.priority}}
+            </span>
+            }
+
+            @if (task.priority === 'high') {
+            <span class="bg-red-200 text-red-900 px-2 py-1 rounded">
+                Priority: {{task.priority}}
+            </span>
+            }
+
+        </div>
+
+
+        <!-- COMMENT TOGGLE -->
+
+        <button (click)="toggleComments(task.id)" class="mt-3 text-blue-600 text-sm hover:underline">
+
+            {{ showComments[task.id] ? 'Hide Comments' : 'Show Comments' }}
+
+        </button>
+
+
+        <!-- COMMENTS SECTION -->
+
+        @if (showComments[task.id]) {
+
+        <app-comment-box [taskId]="task.id"></app-comment-box>
+
+        }
+
+    </div>
+
+    }
+
+</div>
+
+@if (showTaskForm()) {
+
+<div class="fixed inset-0 z-50 flex items-center justify-center">
+
+    <!-- Blurred Background -->
+
+    <div class="absolute inset-0 bg-black/30 backdrop-blur-sm" (click)="toggleTaskForm()">
+    </div>
+
+    <!-- Modal -->
+
+    <div class="relative bg-white rounded-lg shadow-lg w-[500px] p-6 z-10">
+
+        <!-- Close Button -->
+
+        <button class="absolute top-3 right-3 text-gray-500 hover:text-black" (click)="toggleTaskForm()">
+
+            ✕
+
+        </button>
+
+        <h2 class="text-xl font-bold mb-4">
+            Create Task
+        </h2>
+
+        <app-task-form></app-task-form>
+
+    </div>
+
+</div>
+
+}

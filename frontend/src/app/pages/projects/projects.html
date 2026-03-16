@@ -1,0 +1,58 @@
+<div class="p-8">
+
+    <div class="flex justify-between">
+        <h1 class="text-2xl font-bold mb-4">Projects</h1>
+
+        <!-- CREATE PROJECT DROPDOWN -->
+
+        <div class="">
+
+            <button class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 cursor-pointer" (click)="toggleProjectForm()">
+
+                + Create Project
+
+            </button>
+
+        </div>
+    </div>
+
+    @for (p of projects(); track p.id) {
+    <div class="border p-4 mb-2 rounded bg-white">
+        <h2 class="font-semibold">{{ p.name }}</h2>
+        <p>{{ p.description }}</p>
+    </div>
+    }
+</div>
+
+@if (showProjectForm()) {
+
+<div class="fixed inset-0 z-50 flex items-center justify-center">
+
+    <!-- Background Blur -->
+
+    <div class="absolute inset-0 bg-black/30 backdrop-blur-sm" (click)="toggleProjectForm()">
+    </div>
+
+    <!-- Modal -->
+
+    <div class="relative bg-white rounded-lg shadow-lg w-[500px] p-6 z-10" (click)="$event.stopPropagation()">
+
+        <!-- Close Button -->
+
+        <button class="absolute top-3 right-3 text-gray-500 hover:text-black" (click)="toggleProjectForm()">
+
+            ✕
+
+        </button>
+
+        <h2 class="text-xl font-bold mb-4">
+            Create Project
+        </h2>
+
+        <app-project-form></app-project-form>
+
+    </div>
+
+</div>
+
+}
