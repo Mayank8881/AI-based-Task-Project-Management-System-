@@ -1,12 +1,12 @@
-# AI-Assisted Mini Project Management Tool
+# AI-Assisted Project Management Tool
 
 ## Overview
 
-The **AI-Assisted Mini Project Management Tool** is a lightweight full-stack web application designed to help teams manage projects and tasks efficiently. The application allows users to create projects, add tasks, track task progress, assign team members, and collaborate through task comments.
+The **AI-Assisted Project Management Tool** is a lightweight full-stack web application designed to help teams manage projects and tasks efficiently. The application allows users to create projects, add tasks, track task progress, assign team members, and collaborate through task comments.
 
 A key highlight of this system is the **AI integration**, which automatically generates task descriptions and suggests task priorities based on the task title using a **Large Language Model via the OpenRouter API**.
 
-The backend is built with **FastAPI and PostgreSQL**, while the frontend is built using **Angular with Signals and TailwindCSS**. The project demonstrates how AI can enhance traditional project management workflows by automating repetitive tasks.
+The backend is built with **FastAPI and PostgreSQL**, while the frontend is built using **Angular and TailwindCSS**. The project demonstrates how AI can enhance traditional project management workflows by automating repetitive tasks.
 
 ---
 
@@ -70,7 +70,6 @@ Status updates are handled using a **PATCH API endpoint**.
 | FastAPI | Backend API framework |
 | SQLAlchemy | ORM for database interaction |
 | PostgreSQL | Relational database |
-| Pydantic | Request validation |
 | OpenRouter API | AI model provider |
 
 ---
@@ -80,9 +79,7 @@ Status updates are handled using a **PATCH API endpoint**.
 | Technology | Purpose |
 |------------|--------|
 | Angular (Latest) | Frontend framework |
-| Angular Signals | State management |
 | TailwindCSS | Styling |
-| Standalone Components | Modular UI components |
 
 ---
 
@@ -119,37 +116,44 @@ project-root
 │ │
 │ └── requirements.txt
 │
-└── frontend
-│
+
+frontend
 └── src
-│
-└── app
-│
-├── services
-│ └── api.service.ts
-│
-├── pages
-│ ├── tasks
-│ │ ├── tasks.ts
-│ │ ├── tasks.html
-│ │ └── tasks.css
-│ │
-│ └── projects
-│
-├── components
-│ ├── task-form
-│ │ ├── task-form.ts
-│ │ └── task-form.html
-│ │
-│ ├── project-form
-│ │ ├── project-form.ts
-│ │ └── project-form.html
-│ │
-│ └── comment-box
-│ ├── comment-box.ts
-│ └── comment-box.html
-│
-└── app.config.ts
+    └── app
+        ├── services
+        │   └── api.ts
+        │
+        ├── pages
+        │   ├── tasks
+        │   │   ├── tasks.ts
+        │   │   ├── tasks.html
+        │   │   └── tasks.css
+        │   │
+        │   └── projects
+        |       ├── projects.ts
+        │       ├── projects.html
+        │       └── projects.css
+        │
+        ├── components
+        │   ├── task-form
+        │   │   ├── task-form.ts
+        │   │   └── task-form.html
+        │   │
+        │   ├── project-form
+        │   │   ├── project-form.ts
+        │   │   └── project-form.html
+        │   │
+        │   └── comment-box
+        │       ├── comment-box.ts
+        │       └── comment-box.html
+        │
+        └── app.config.ts
+        └── app.css
+        └── app.routes.ts
+        └── app.html
+        └── app.ts
+    └── main.ts
+    └── readme.md
 ```
 
 ---
