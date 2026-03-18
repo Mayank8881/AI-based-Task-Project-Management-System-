@@ -1,4 +1,4 @@
 export const environment = {
     production: true,
-    apiUrl: 'https://your-backend.onrender.com'
+    apiUrl: 'https://ai-based-task-project-management-system-1.onrender.com'
 };
