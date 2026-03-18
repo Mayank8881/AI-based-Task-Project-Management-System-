@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from config.database import engine
+from config.database import engine, Base
 from sqlalchemy import text
 
 from models import project_model
@@ -18,8 +18,12 @@ app = FastAPI(
     version="1.0.0"
 )
 
+# ✅ CREATE TABLES (IMPORTANT)
+Base.metadata.create_all(bind=engine)
+
 origins = [
     "http://localhost:4200",
+    "https://your-app.netlify.app",
 ]
 
 app.add_middleware(
@@ -41,6 +45,17 @@ app.add_middleware(
 #         print("Database connection failed")
 #         print(e)
 
+
+# DB check
+@app.on_event("startup")
+def check_database_connection():
+    try:
+        with engine.connect() as connection:
+            connection.execute(text("SELECT 1"))
+        print("Database connected successfully")
+    except Exception as e:
+        print("Database connection failed")
+        print(e)
 
 @app.get("/")
 def home():
