@@ -2,14 +2,14 @@ from fastapi import FastAPI
 from app.config.database import engine, Base
 from sqlalchemy import text
 
-from models import project_model
-from models import comment_model
-from models import task_model
+from app.models import project_model
+from app.models import comment_model
+from app.models import task_model
 
-from routes import project_routes
-from routes import task_routes
-from routes import comment_routes
-from routes import ai_routes
+from app.routes import project_routes
+from app.routes import task_routes
+from app.routes import comment_routes
+from app.routes import ai_routes
 
 from fastapi.middleware.cors import CORSMiddleware
 
