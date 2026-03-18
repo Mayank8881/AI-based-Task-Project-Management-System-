@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from config.database import engine, Base
+from app.config.database import engine, Base
 from sqlalchemy import text
 
 from models import project_model
