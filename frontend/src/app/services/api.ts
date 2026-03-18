@@ -1,12 +1,14 @@
 import { inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ApiService {
   http = inject(HttpClient);
-  API = 'http://localhost:8000';
+  // API = 'http://localhost:8000';
+  API = environment.apiUrl;
   constructor() { }
 
   getProjects() {
