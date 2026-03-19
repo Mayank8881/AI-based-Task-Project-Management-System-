@@ -7,7 +7,8 @@
 
         <div class="">
 
-            <button class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 cursor-pointer" (click)="toggleProjectForm()">
+            <button class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 cursor-pointer"
+                (click)="toggleProjectForm()">
 
                 + Create Project
 
@@ -49,7 +50,7 @@
             Create Project
         </h2>
 
-        <app-project-form></app-project-form>
+        <app-project-form (onClose)="toggleProjectForm()"></app-project-form>
 
     </div>
 

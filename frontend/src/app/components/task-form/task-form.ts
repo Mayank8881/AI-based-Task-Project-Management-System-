@@ -1,4 +1,4 @@
-import { Component, OnInit, signal } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output, signal } from '@angular/core';
 import { ApiService } from '../../services/api';
 
 @Component({
@@ -8,6 +8,7 @@ import { ApiService } from '../../services/api';
 })
 export class TaskForm implements OnInit {
 
+  @Output() onClose = new EventEmitter<void>();
   projects = signal<any[]>([]);
 
   title = signal('');
@@ -16,7 +17,7 @@ export class TaskForm implements OnInit {
   createdBy = signal('');
   projectId = signal<number | null>(null);
 
-  constructor(private api: ApiService) {}
+  constructor(private api: ApiService) { }
 
   ngOnInit() {
     this.loadProjects();
@@ -52,6 +53,7 @@ export class TaskForm implements OnInit {
       this.createdBy.set('');
       this.status.set('todo');
 
+      this.onClose.emit();
     });
 
   }

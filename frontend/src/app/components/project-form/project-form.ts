@@ -1,4 +1,4 @@
-import { Component, signal } from '@angular/core';
+import { Component, EventEmitter, Output, signal } from '@angular/core';
 import { ApiService } from '../../services/api';
 
 @Component({
@@ -8,14 +8,16 @@ import { ApiService } from '../../services/api';
   styleUrl: './project-form.css',
 })
 export class ProjectForm {
-  name=signal('')
-  description=signal('')
-  createdBy=signal('')
+  name = signal('')
+  description = signal('')
+  createdBy = signal('')
 
-  constructor(private api: ApiService) {}
+  @Output() onClose = new EventEmitter<void>();
 
-  createProject(){
-    if(!this.name || !this.createdBy) {
+  constructor(private api: ApiService) { }
+
+  createProject() {
+    if (!this.name || !this.createdBy) {
       alert("Project name and creator required");
       return;
     }
@@ -33,6 +35,8 @@ export class ProjectForm {
       this.name.set('');
       this.description.set('');
       this.createdBy.set('');
+
+      this.onClose.emit();
 
     });
   }
