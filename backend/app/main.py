@@ -23,7 +23,7 @@ Base.metadata.create_all(bind=engine)
 
 origins = [
     "http://localhost:4200",
-    "https://your-app.netlify.app",
+    "https://ai-task-project-management.netlify.app",
 ]
 
 app.add_middleware(
