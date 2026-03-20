@@ -12,6 +12,7 @@ from routes import comment_routes
 from routes import ai_routes
 
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import HTMLResponse
 
 app = FastAPI(
     title="AI Project Management API",
@@ -57,9 +58,12 @@ def check_database_connection():
         print("Database connection failed")
         print(e)
 
-@app.get("/")
+@app.get("/",response_class=HTMLResponse)
 def home():
-    return {"message": "AI Project Task Management API Running"}
+    return """
+        <h2>AI Project Task Management API Running</h2>
+        <h3>Swagger UI -> <a href="/docs">Open Swagger</a></h3>
+    """
 
 app.include_router(project_routes.router)
 app.include_router(task_routes.router)
